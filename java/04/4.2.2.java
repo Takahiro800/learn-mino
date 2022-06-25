@@ -3,17 +3,11 @@ import java.util.*;
 class Main {
     public static void main(String[] args) {
         AttackPower attackPowerA = new AttackPower(20);
-        AttackPower attackPowerB = new AttackPower(20);
 
         Weapon weaponA = new Weapon(attackPowerA);
-        Weapon weaponB = new Weapon(attackPowerB);
-
-        weaponA.attackPower.value += 5;
-
         System.out.println("Weapon A attack power: " + weaponA.attackPower.value);
-        System.out.println("Weapon B attack power: " + weaponB.attackPower.value);
 
-        attackPowerA.reinForce(15);
+        attackPowerA.reinForce(new AttackPower(15));
         System.out.println("Weapon A attack power: " + weaponA.attackPower.value);
     }
 
@@ -24,7 +18,8 @@ class Main {
 // 攻撃力を表現するクラス
 class AttackPower {
     static final int MIN = 0;
-    int value; // finalが付いてないので可変
+    // 4.18
+    final int value;
 
     AttackPower(int value) {
         if (value < MIN) {
@@ -38,16 +33,16 @@ class AttackPower {
      *
      * @params incremet 攻撃力の増分
      */
-    void reinForce(int increment) {
-        value += increment;
+    AttackPower reinForce(final AttackPower increment) {
+        return new AttackPower(this.value + increment.value);
     }
 
     /*
      * 無力化する
      */
 
-    void disable() {
-        value = MIN;
+    AttackPower disable() {
+        return new AttackPower(MIN);
     }
 }
 
@@ -58,6 +53,20 @@ class Weapon {
 
     Weapon(AttackPower attackPower) {
         this.attackPower = attackPower;
+    }
+
+    /*
+     * 武器を強化する
+     *
+     * @param increment 攻撃力の増分
+     *
+     * @return 強化した武器
+     */
+
+    Weapon reinForce(final AttackPower increment) {
+        final AttackPower reinForced = attackPower.reinForce(increment);
+
+        return new Weapon(reinForced);
     }
 
 }
