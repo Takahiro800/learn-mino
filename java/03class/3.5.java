@@ -21,16 +21,18 @@ class Money {
         this.currency = currency;
     }
 
-    // 3.5 Moneyクラスに金額加算メソッドを用意
-    // void add(int other) {
-    // amount += other;
-    // }
 
     // 3.9 変更値を持ったMoneyクラスのインスタンスを生成する
     // 3.10 メソッドの引数にもfinalをつける
-    Money add(final int other) {
+    // 3.15 Money型だけ渡せる用にする
+    Money add(final Money other) {
+        // 3.16 バリデーションを追加
+        if (!currency.equals(other.currency)) {
+            throw new IllegalArgumentException("通貨単位が違います");
+        }
+
         // 3.13 ローカル変数も不変にする
-        final int added = amount + other;
+        final int added = amount + other.amount;
         return new Money(added, currency);
     }
 
