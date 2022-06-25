@@ -56,5 +56,16 @@ class Utill {
     }
 }
 
+
 // 5.28 引数ではなくインスタンス変数として表現する
 // 魔法力
+class MAgicPoint {
+    // 現在の魔法力残量
+    int currentAmount;
+
+    // オリジナルの魔法力最大値
+    int originalMaxAmount;
+
+    // 魔法力最大値の増分
+    List<Integer> maxIncrements;
+}

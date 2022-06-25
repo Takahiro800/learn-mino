@@ -28,3 +28,46 @@ class DiscountedPrice {
 
     }
 }
+
+
+// 5.29 魔法力に関するロジックをカプセル化
+class MagicPoint {
+    private int currentAmount;
+    private int originalMaxAmount;
+    private final List<Integer> maxIncrements;
+
+    // 省略
+
+    /* @return 現在の魔法力残量 */
+    int current() {
+        return currentAmount;
+    }
+
+    /* @return 魔法力の最大量 */
+    int max() {
+        int amount = originalMaxAmount;
+        for (int each : maxIncrements) {
+            amount += each;
+        }
+        return amount;
+    }
+
+    /**
+     * 魔法力を回復する
+     *
+     * @param recoveryAmount 回復量
+     *
+     */
+    void recover(final int recoveryAmount) {
+        currentAmount = Math.min(currentAmount + recoveryAmount, max());
+    }
+
+    /**
+     * 魔法力を回復する
+     *
+     * @param consumeAmount 消費量
+     */
+    void consume(final int consumeAmount) {
+
+    }
+}
