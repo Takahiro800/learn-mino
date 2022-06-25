@@ -25,3 +25,16 @@ func refactor2(playerArmPower, playerWeaponPower, enemyBodyDevnce, enemyArmorDef
 	}
 	return damageAmount
 }
+
+// 2.3 目的ごとの変数を用意する
+func refactor3(playerArmPower, playerWeaponPower, enemyBodyDevnce, enemyArmorDefence int) int {
+	totalPlayerAttackPower := playerArmPower + playerWeaponPower
+	totalEnemyDefence := enemyBodyDevnce + enemyArmorDefence
+
+	var damageAmount int = totalPlayerAttackPower - (totalEnemyDefence / 2)
+
+	if damageAmount < 0 {
+		return 0
+	}
+	return damageAmount
+}
