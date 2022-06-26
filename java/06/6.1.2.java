@@ -1,5 +1,4 @@
 class HealthCondition {
-    static String State;
     static HealthCondition dead;
     static HealthCondition danger;
     static HealthCondition caution;
@@ -8,7 +7,6 @@ class HealthCondition {
 
 
 class Bad {
-    // float hitpointRate = member.hitPoint / member.maxHitpoint;
 
 
     HealthCondition currentHealthCondition;
@@ -32,4 +30,24 @@ class Bad {
     }
 
 
+}
+
+
+class Refactor {
+    HealthConditon test() {
+        float hitPointRate = member.hitPoint / member.maxHitPoint;
+        HealthCondition currentHealthCondition;
+
+        if (hitPointRate == 0)
+            return HealthCondition.dead;
+        if (hitPointRate < 0.3)
+            return HealthCondition.danger;
+
+        if (hitPointRate < 0.5)
+            return HealthCondition.caution;
+
+        return HealthCondition.fine;
+
+
+    }
 }
