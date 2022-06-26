@@ -25,7 +25,13 @@ class Refacotr {
     if (!member.canAct()) return ;
     if (member.magicPoint < magic.costMagicPoint) return;
 
+    // 6.5 条件追加が容易
+    if (member.technicalPoint < magic.costTechnicalPoint) return;
+
 
     member.consumeMagicPoint(magic.costMagicPoint);
     member.chant(magic);
+
+    // 6.6 実行ロジックの追加も容易
+    member.gainTechnicalPoint(magic.incrementTechnicalPoint);
 }
