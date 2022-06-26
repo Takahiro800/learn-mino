@@ -34,19 +34,19 @@ class Main {
 
     // 魔法を消費する
     void consumeMagicPoint(final Magic magic) {
-        final int costMagicPoint = magic.costMagicPoint();
+        final MagicPoint costMagicPoint = magic.costMagicPoint();
         // costMagicPointを使った魔法力消費処理
     }
 
     // テクニカルポイントを消費する
     void consumeTechnicalPoint(final Magic magic) {
-        final int costTechniaclPoint = magic.costTechnicalPoint();
+        final TechnicalPoint costTechniaclPoint = magic.costTechnicalPoint();
         // costTechnicalPointを使ったテクニカルポイント消費処理
     }
 
     // ダメージ計算する
     void magicDamage(final Magic magic) {
-        final int attackPower = magic.attackPower();
+        final AttackPower attackPower = magic.attackPower();
         // attackPowerを使ったダメージ計算
     }
 
@@ -64,11 +64,38 @@ enum MagicType {
 interface Magic {
     String name();
 
-    int costMagicPoint();
+    MagicPoint costMagicPoint();
 
-    int attackPower();
+    AttackPower attackPower();
 
-    int costTechnicalPoint();
+    TechnicalPoint costTechnicalPoint();
+}
+
+
+class MagicPoint {
+    int costMagicPoint;
+
+    MagicPoint(int costMagicPoint) {
+        this.costMagicPoint = costMagicPoint;
+    }
+}
+
+
+class AttackPower {
+    int attackPower;
+
+    AttackPower(int attackPower) {
+        this.attackPower = attackPower;
+    }
+}
+
+
+class TechnicalPoint {
+    int technicalPoint;
+
+    TechnicalPoint(int technicalPoint) {
+        this.technicalPoint = technicalPoint;
+    }
 }
 
 
@@ -84,16 +111,17 @@ class Fire implements Magic {
         return "ファイア";
     }
 
-    public int costMagicPoint() {
-        return 2;
+    public MagicPoint costMagicPoint() {
+        return new MagicPoint(2);
     }
 
-    public int attackPower() {
-        return 20 + (int) (member.level * 0.5);
+    public AttackPower attackPower() {
+        final int value = 20 + (int) (member.level * 0.5);
+        return new AttackPower(value);
     }
 
-    public int costTechnicalPoint() {
-        return 0;
+    public TechnicalPoint costTechnicalPoint() {
+        return new TechnicalPoint(0);
     }
 
 }
@@ -111,16 +139,18 @@ class Shiden implements Magic {
         return "紫雷";
     }
 
-    public int costMagicPoint() {
-        return 5 + (int) (member.level * 0.2);
+    public MagicPoint costMagicPoint() {
+        final int value = 5 + (int) (member.level * 0.2);
+        return new MagicPoint(value);
     }
 
-    public int attackPower() {
-        return 50 + (int) (member.agility * 1.5);
+    public AttackPower attackPower() {
+        final int value = 50 + (int) (member.agility * 1.5);
+        return new AttackPower(value);
     }
 
-    public int costTechnicalPoint() {
-        return 5;
+    public TechnicalPoint costTechnicalPoint() {
+        return new TechnicalPoint(5);
     }
 }
 
@@ -137,16 +167,18 @@ class HellFire implements Magic {
         return "地獄の業火";
     }
 
-    public int costMagicPoint() {
-        return 16;
+    public MagicPoint costMagicPoint() {
+        return new MagicPoint(16);
     }
 
-    public int attackPower() {
-        return 200 + (int) (member.magicAttack * 0.5 + member.vitality * 2);
+    public AttackPower attackPower() {
+        final int value = 200 + (int) (member.magicAttack * 0.5 + member.vitality * 2);
+        return new AttackPower(value);
     }
 
-    public int costTechnicalPoint() {
-        return 20 + (int) (member.level * 0.4);
+    public TechnicalPoint costTechnicalPoint() {
+        final int value = 20 + (int) (member.level * 0.4);
+        return new TechnicalPoint(value);
     }
 }
 
