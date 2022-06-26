@@ -1,7 +1,8 @@
 // 6.10
 enum MagicType {
     fire, // ファイア。炎の魔法。
-    shiden // 紫雷。雷の魔法。
+    shiden, // 紫雷。雷の魔法。
+    hellFire, // 地獄の業火
 }
 
 
@@ -17,6 +18,9 @@ class MAgicManager {
             case shiden:
                 name = "紫雷";
                 break;
+            case hellFire:
+                name = "地獄の業火";
+                break;
         }
         return name;
     }
@@ -31,6 +35,9 @@ class MAgicManager {
                 break;
             case shiden:
                 magicPoint = 5 + (int) (member.level * 0.2);
+                break;
+            case hellFire:
+                magicPoint = 16;
                 break;
         }
         return magicPoint;
