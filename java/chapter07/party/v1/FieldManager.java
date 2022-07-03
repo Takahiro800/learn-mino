@@ -1,6 +1,6 @@
 package chapter07.party.v1;
 
-import chapter07_collection.party.Member;
+import chapter07.party.Member;
 
 import java.util.List;
 import javax.management.RuntimeErrorException;
