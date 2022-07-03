@@ -56,5 +56,9 @@ class Party {
         return members.size() == MAX_MEMBER_COUNT;
     }
 
+    /** @return メンバーリスト。要素の変更はできません */
+    List<Member> members() {
+        return members.unmodifiableList();
+    }
 
 }
